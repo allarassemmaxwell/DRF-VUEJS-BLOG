@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Synkroo" name="Theo" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Latest compiled and minified CSS -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+
+<body>
+    {% block content %}
+    {% endblock %}
+
+    <!-- IMPORT VUE JS -->
+    <script src="https://unpkg.com/vuex@3.5.1/dist/vuex.js"></script>
+    <!-- IMPORT VUE AXIOS  -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- IMPORT VUE ROUTER  -->
+    <script src="https://unpkg.com/vue-router"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+</body>
+
+
+
+{% block javascript %}
+{% endblock %}
+
+ </html>

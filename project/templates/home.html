@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div id="homeapp">
+        <div class="container">
+            <h2 class="title">Welcome</h2>
+            <div class="row">
+                <div class="col col-md-4" v-for="post in APIData" :key="post.id">
+                    <div class="card" style="width: 18rem;"  >
+                        <img class="card-img-top" :src=[[post.thumbnail]] width="200px" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">[[post.title]] <small>displayableDate(post.timestamp)</small></h5>
+                            <p class="card-text">
+                                [[post.content.substring(0, 120) + "..."]]
+                            </p>
+                            <a href="" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+{% block javascript %}
+    <script>
+        var homeVue = new Vue({
+            el: '#homeapp',
+            delimiters: ['[[', ']]'],
+            data () {
+                return {
+                    APIData: []
+                }
+            },
+            computed: {
+                    
+            },
+            mounted() {
+                console.log('Mounted');
+            },
+            created() {
+                this.get_posts();
+            },
+            methods: {
+                async get_posts() {
+                    try {
+                        const response = await axios.get('/posts/');
+                        this.APIData = response.data
+                        console.log("GET HERE:", this.APIData);
+                    } catch (error) {
+                        console.error(error);
+                    }
+                },
+                async post_post() {
+                    try {
+                        var data = { }
+                        const response = await axios.post('/posts/', data);
+                        console.log("POST METHOD", response.data);
+                    } catch (errors) {
+                        console.error(errors);
+                    }
+                },
+                async delete(id) {
+                    try {
+                        const response = await axios.delete(`${BASE_URL}/todos/${id}`);
+                        console.log("DELETE POST", id);
+                        return response.data;
+                    } catch (errors) {
+                        console.error(errors);
+                    }
+                },
+                displayableDate (date) {
+                    return new Intl.DateTimeFormat(
+                      'en-US',
+                      { dateStyle: 'full' },
+                    ).format(new Date(date))
+                },
+            },
+        })
+    </script>
+{% endblock %}
